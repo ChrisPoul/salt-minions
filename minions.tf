@@ -1,5 +1,9 @@
-resource "google_compute_instance" "salt_minion" {
-  name = "salt-minion"
+resource "google_compute_instance" "salt_minions" {
+  for_each = toset([
+    "1",
+    "2"
+  ])
+  name = "salt-minion-${each.value}"
   machine_type = "e2-standard-2"
   zone = var.zone
   allow_stopping_for_update = true
@@ -30,6 +34,6 @@ resource "google_compute_instance" "salt_minion" {
       timeout = "500s"
       private_key = file(var.ssh_private_key_path)
     }
-    script = "install-salt-minion.sh"
+    script = "create-salt-minion.sh"
   }
 }
