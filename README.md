@@ -4,7 +4,7 @@ Before you can get started you need:
 - A public key named **id_rsa.pub** in the home directory inside the **.ssh** directory. The path would look as follows **~/.ssh/id_rsa.pub**
 - A private key named **id_rsa** in the home directory inside the **.ssh** directory. The path would look as follows **~/.ssh/id_rsa.pub**
 - A master node already running.
-- The master node's **ip address** and it's **master.pub key**.
+- The master node's **ip address** and it's **master.pub** key.
 
 # Before you run terraform apply
 Before you can run **terraform apply** you first need to alter the **create-salt-minion.sh** file providing it the following information:
@@ -20,7 +20,7 @@ echo "master_finger: 'b7:dd:0b:71:15:2b:e1:bc:2c:f6:5a:4e:67:0f:da:2e:62:a9:5e:2
 Now you can simply run **terraform apply** 
 
 # Final steps
-Once **terraform apply** finishes executing we need to determine if the minions were created correctly. To do this run the following command and you should see all the unaccepted keys from the minions.
+Once **terraform apply** finishes executing we need to determine if the minions were created correctly. To do this run the following command on the master node and you should see all the unaccepted keys from the minions.
 ``` bash
 ~$ sudo salt-key --finger-all
 Local Keys:
