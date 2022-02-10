@@ -3,7 +3,7 @@ resource "google_compute_firewall" "allow" {
     ssh = "22"
     http = "80"
   }
-  name = "poulsen-allow-${each.key}"
+  name = "salt-allow-${each.key}"
   network = google_compute_network.vpc.id
   allow {
     protocol = "tcp"
@@ -15,7 +15,7 @@ resource "google_compute_firewall" "allow" {
 }
 
 resource "google_compute_firewall" "allow_saltstack" {
-  name = "poulsen-allow-saltstack"
+  name = "salt-allow-saltstack"
   network = google_compute_network.vpc.id
 
   allow {
