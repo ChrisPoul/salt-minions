@@ -34,6 +34,13 @@ resource "google_compute_instance" "salt_minions" {
       timeout = "500s"
       private_key = file(var.ssh_private_key_path)
     }
-    script = "create-salt-minion.sh"
+    inline = [
+      "sudo apt update",
+      "sudo apt-get install python3 salt-common vim -y",
+      "sudo apt-get install salt-minion -y",
+      "echo \"master: ${var.master_ip}\" | sudo tee /etc/salt/minion",
+      "echo \"master_finger: '${var.master_pub_key}'\" | sudo tee -a /etc/salt/minion",
+      "sudo systemctl restart salt-minion"
+    ]
   }
 }

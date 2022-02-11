@@ -16,3 +16,9 @@ variable ssh_public_key_path {
 variable ssh_private_key_path {
   type = string
 }
+variable master_ip {
+  type = string
+}
+variable master_pub_key {
+  type = string
+}
