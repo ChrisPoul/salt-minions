@@ -6,20 +6,9 @@ Before you can get started you need:
 - A master node already running.
 - The master node's **ip address** and it's **master.pub** key.
 
-# Before you run terraform apply
-Before you can run **terraform apply** you first need to alter the **create-salt-minion.sh** file providing it the following information:
-- The master's **ip address**.
-- The master's **master.pub** key.
+# Instructions
+For this script to work all you need to provide are the **masters's ip address** and the **master.pub key**, then all you got to do is run the script.
 
-So it would look like this:
-``` bash
-echo "master: 35.188.218.251" | sudo tee /etc/salt/minion
-echo "master_finger: 'b7:dd:0b:71:15:2b:e1:bc:2c:f6:5a:4e:67:0f:da:2e:62:a9:5e:2d:36:48:78:ab:d3:7c:f8:33:61:83:89:f4'" | sudo tee -a /etc/salt/minion
-```
-
-Now you can simply run **terraform apply** 
-
-# Final steps
 Once **terraform apply** finishes executing we need to determine if the minions were created correctly. To do this run the following command on the master node and you should see all the unaccepted keys from the minions.
 ``` bash
 ~$ sudo salt-key --finger-all
